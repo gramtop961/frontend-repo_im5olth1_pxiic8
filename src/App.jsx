@@ -45,6 +45,11 @@ export default function App() {
       <Navbar />
       <main className="pt-16">
         <Hero />
+        {myList.length > 0 && (
+          <section id="my-list">
+            <Row title="My List" items={myList} onSelect={onSelect} />
+          </section>
+        )}
         {rows.map((r) => (
           <Row key={r.title} title={r.title} items={r.items} onSelect={onSelect} />
         ))}
