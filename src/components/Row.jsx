@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function Row({ title, items = [] }) {
+export default function Row({ title, items = [], onSelect }) {
   const scrollerRef = useRef(null);
 
   useEffect(() => {
@@ -54,9 +54,11 @@ export default function Row({ title, items = [] }) {
         className="no-scrollbar mt-3 flex gap-3 overflow-x-auto px-6 pb-2 md:px-8"
       >
         {items.map((item) => (
-          <div
+          <button
+            type="button"
+            onClick={() => onSelect?.(item)}
             key={item.id}
-            className="group relative h-40 w-72 shrink-0 overflow-hidden rounded-lg bg-gray-800"
+            className="group relative h-40 w-72 shrink-0 overflow-hidden rounded-lg bg-gray-800 text-left focus:outline-none focus:ring-2 focus:ring-white/40"
           >
             <img
               src={item.image}
@@ -67,7 +69,7 @@ export default function Row({ title, items = [] }) {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 p-3 text-sm font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               {item.title}
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </section>
